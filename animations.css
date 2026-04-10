@@ -1,0 +1,61 @@
+/* ═══════════════════════
+   ANIMATIONS & EFFECTS
+═══════════════════════ */
+
+/* ─ Explosion particle ─ */
+.explosion-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  animation: explodeOut 0.75s var(--ease-out-expo) forwards;
+}
+@keyframes explodeOut {
+  from { transform: translate(0, 0) scale(1); opacity: 1; }
+  to   { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* ─ Button CTA pulse ─ */
+.btn--primary.btn--large::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid var(--marrom);
+  opacity: 0;
+  animation: largeBtnPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes largeBtnPulse {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  50%  { transform: scale(1.05); opacity: 0; }
+  100% { transform: scale(1.05); opacity: 0; }
+}
+
+/* ─ Scroll reveal: generic ─
+   NOTA: opacity e transform iniciais são setados via JS (GSAP gsap.fromTo).
+   Aqui só definimos o estado "visível" caso JS falhe (fallback). */
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  /* Sem opacity:0 aqui — GSAP controla via fromTo */
+}
+
+/* ─ Versus items stagger ─ */
+.versus-item {
+  transition: opacity 0.4s var(--ease-out-expo),
+              transform 0.4s var(--ease-out-expo),
+              background 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* ─ Accessibility: prefers-reduced-motion ─ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

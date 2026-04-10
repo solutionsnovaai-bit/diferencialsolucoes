@@ -1,0 +1,299 @@
+/* ═══════════════════════
+   PLANOS
+═══════════════════════ */
+.section--planos { background: var(--creme-paper); }
+
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─ Card base ─ */
+.plano-card {
+  background: var(--white);
+  border: 1.5px solid rgba(217,196,174,0.65);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s var(--ease-out-expo),
+              box-shadow 0.5s var(--ease-out-expo);
+}
+
+.plano-card__inner { padding: 2.2rem; }
+
+/* ─ Card Atual ─ */
+.plano-card--atual { opacity: 0.78; }
+.plano-card--atual:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(92,46,20,0.08);
+}
+
+/* ─ Card Pro ─ */
+.plano-card--pro {
+  background: var(--marrom-dark);
+  border-color: var(--gold);
+  box-shadow: 0 20px 60px rgba(61,26,10,0.3);
+}
+.plano-card--pro:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 50px 120px rgba(61,26,10,0.4), 0 0 70px rgba(196,149,106,0.15);
+}
+
+.plano-card__glow {
+  position: absolute;
+  top: -40px; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,149,106,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: cardGlowPulse 4s ease-in-out infinite;
+}
+@keyframes cardGlowPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50%       { opacity: 1;   transform: translateX(-50%) scale(1.2); }
+}
+
+/* Border animado no card Pro */
+.plano-card__border-anim {
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 2px);
+  background: conic-gradient(from 0deg, var(--gold), transparent 40%, var(--gold-dark) 70%, transparent 100%);
+  z-index: -1;
+  opacity: 0.35;
+  animation: rotateBorder 7s linear infinite;
+}
+@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes rotateBorder {
+  to { transform: rotate(360deg); }
+}
+
+/* ─ Card Premium ─ */
+.plano-card--premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(92,46,20,0.12);
+}
+
+/* ─ Badges ─ */
+.plano-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 1.3rem;
+}
+.plano-badge--atual  { background: rgba(92,46,20,0.08); color: var(--marrom-mid); }
+.plano-badge--pro    { background: var(--gold); color: var(--marrom-dark); box-shadow: 0 4px 18px rgba(196,149,106,0.4); }
+.plano-badge--premium { background: rgba(92,46,20,0.08); color: var(--marrom); }
+
+/* ─ Nome ─ */
+.plano-nome {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--marrom-dark);
+  margin-bottom: 0.15rem;
+  letter-spacing: -0.01em;
+}
+.plano-card--pro .plano-nome { color: var(--white); }
+
+/* ─ Preços ─ */
+.plano-preco-original {
+  font-size: 0.72rem;
+  color: var(--marrom-lt);
+  text-decoration: line-through;
+  opacity: 0.5;
+  min-height: 1.1em;
+  margin-bottom: 0.15rem;
+}
+.plano-card--pro .plano-preco-original { color: rgba(222,186,150,0.5); }
+
+.plano-desconto {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--green);
+  padding: 0.2rem 0.65rem;
+  border-radius: 100px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.plano-preco-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  margin: 0.5rem 0 0.2rem;
+}
+.plano-currency {
+  font-size: 0.95rem;
+  color: var(--marrom-mid);
+  padding-bottom: 0.6rem;
+  font-weight: 400;
+}
+.plano-card--pro .plano-currency { color: var(--gold); }
+
+.plano-preco {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: var(--marrom-dark);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.plano-card--pro .plano-preco { color: var(--white); }
+
+.plano-mes {
+  font-size: 0.72rem;
+  color: var(--marrom-lt);
+  padding-bottom: 0.7rem;
+}
+.plano-card--pro .plano-mes { color: rgba(222,186,150,0.5); }
+
+.plano-antes {
+  font-size: 0.72rem;
+  color: var(--marrom-lt);
+  margin-bottom: 1rem;
+  opacity: 0.65;
+  line-height: 1.4;
+}
+.plano-card--pro .plano-antes { color: rgba(222,186,150,0.6); }
+
+/* ─ Bonus ─ */
+.plano-bonus-wrap { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+.plano-bonus {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+.plano-card--pro .plano-bonus { color: var(--gold-light); background: rgba(196,149,106,0.14); }
+
+/* ─ Divider ─ */
+.plano-divider {
+  height: 1px;
+  background: rgba(217,196,174,0.65);
+  margin: 1.2rem 0;
+}
+.plano-card--pro .plano-divider { background: rgba(234,216,196,0.12); }
+
+/* ─ Features ─ */
+.plano-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+.plano-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.83rem;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--marrom-mid);
+}
+.plano-card--pro .plano-features li { color: rgba(217,196,174,0.78); }
+
+.feat-check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--creme);
+  color: var(--marrom);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.feat-check--gold { background: var(--gold); color: var(--marrom-dark); }
+
+/* ─ Botões dos cards ─ */
+.plano-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.95rem;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid var(--marrom);
+  color: var(--marrom);
+  background: transparent;
+}
+.plano-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--marrom);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.plano-btn > * { position: relative; z-index: 1; transition: color 0.4s; }
+.plano-btn:hover::before { transform: scaleX(1); }
+.plano-btn:hover > * { color: var(--white); }
+
+.plano-btn--pro {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--marrom-dark);
+}
+.plano-btn--pro::before { background: var(--gold-dark); }
+.plano-btn--pro:hover > * { color: var(--white); }
+
+.plano-btn--premium::before { background: var(--marrom-dark); }
+
+.plano-btn--disabled {
+  border-color: rgba(92,46,20,0.2);
+  color: var(--marrom-mid);
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* CTA pulse no botão Pro */
+.plano-btn--pro::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid var(--gold);
+  animation: planoBtnPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes planoBtnPulse {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  50%  { transform: scale(1.04); opacity: 0; }
+  100% { transform: scale(1.04); opacity: 0; }
+}
+
+/* ─ Responsive ─ */
+@media (max-width: 1024px) {
+  .planos-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+}
